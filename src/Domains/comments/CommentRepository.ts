@@ -1,5 +1,5 @@
 interface NewCommentType {
-  id: string
+  threadId: string
   content: string
   owner: string
 }

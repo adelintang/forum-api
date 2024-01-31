@@ -1,5 +1,5 @@
 interface NewReplyType {
-  id: string
+  commentId: string
   content: string
   owner: string
 }

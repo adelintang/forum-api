@@ -7,7 +7,7 @@ describe('CommentRepository interface', () => {
 
     // Action and Assert
     await expect(commentRepository.addComment({
-      id: '',
+      threadId: '',
       content: '',
       owner: ''
     })).rejects.toThrowError('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED')

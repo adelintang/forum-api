@@ -9,7 +9,7 @@ class ThreadRepository {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
-  async verifyThreadExists (newThread: NewThreadType): Promise<void> {
+  async verifyThreadExists (id: string): Promise<void> {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
