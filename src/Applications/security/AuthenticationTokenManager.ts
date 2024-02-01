@@ -4,11 +4,11 @@ interface PayloadType {
 }
 
 class AuthenticationTokenManager {
-  async createRefreshToken (payload: PayloadType): Promise<void> {
+  async createRefreshToken (payload: PayloadType): Promise<any> {
     throw new Error('AUTHENTICATION_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED')
   }
 
-  async createAccessToken (payload: PayloadType): Promise<void> {
+  async createAccessToken (payload: PayloadType): Promise<any> {
     throw new Error('AUTHENTICATION_TOKEN_MANAGER.METHOD_NOT_IMPLEMENTED')
   }
 
