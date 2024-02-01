@@ -12,12 +12,12 @@ interface UserRepositoryType {
   verifyAvailableUsername: (username: string) => Promise<void>
   verifyUserExist: (id: string) => Promise<void>
   getPasswordByUsername: (username: string) => Promise<void>
-  getIdByUsername: (username: string) => Promise<void>
+  getIdByUsername: (username: string) => Promise<any>
 }
 
 interface PasswordHashType {
   hash: (password: string) => Promise<void>
-  comparePassword: (plain: string, encrypted: string) => Promise<void>
+  comparePassword: (plain: string, encrypted: string) => Promise<any>
 }
 
 interface PayloadType {
@@ -26,8 +26,8 @@ interface PayloadType {
 }
 
 interface AuthenticationTokenManagerType {
-  createRefreshToken: (payload: PayloadType) => Promise<void>
-  createAccessToken: (payload: PayloadType) => Promise<void>
+  createRefreshToken: (payload: PayloadType) => Promise<any>
+  createAccessToken: (payload: PayloadType) => Promise<any>
   verifyRefreshToken: (token: string) => Promise<void>
   decodePayload: () => Promise<void>
 }
@@ -75,14 +75,14 @@ class LoginUserUseCase {
 
     await this._passwordHash.comparePassword(password, encryptedPassword as unknown as string)
 
-    const id: string | any = await this._userRepository.getIdByUsername(username)
+    const id: string = await this._userRepository.getIdByUsername(username)
 
-    const accessToken: string | any = await this._authenticationTokenManager
+    const accessToken: string = await this._authenticationTokenManager
       .createAccessToken({ username, id })
-    const refreshToken: string | any = await this._authenticationTokenManager
+    const refreshToken: string = await this._authenticationTokenManager
       .createRefreshToken({ username, id })
 
-    const newAuthentication: { accessToken: string, refreshToken: string } = new NewAuthentication({
+    const newAuthentication: NewAuthenticationType = new NewAuthentication({
       accessToken,
       refreshToken
     })

@@ -9,7 +9,7 @@ interface NewThreadType {
 interface ThreadRepositoryType {
   addThread: (newThread: NewThreadType) => Promise<void>
   verifyThreadExists: (id: string) => Promise<any>
-  getThreadById: (id: string) => Promise<void>
+  getThreadById: (id: string) => Promise<any>
 }
 
 interface NewCommentType {
@@ -22,7 +22,7 @@ interface CommentRepositoryType {
   addComment: (newComment: NewCommentType) => Promise<any>
   deleteComment: (id: string) => Promise<void>
   verifyCommentOwner: (id: string, owner: string) => Promise<void>
-  getCommentsByThreadId: (threadId: string) => Promise<void>
+  getCommentsByThreadId: (threadId: string) => Promise<any>
   verifyCommentExists: (id: string) => Promise<void>
 }
 
@@ -36,7 +36,7 @@ interface ReplyRepositoryType {
   addReply: (newReply: NewReplyType) => Promise<any>
   deleteReply: (id: string) => Promise<void>
   verifyReplyOwner: (id: string, owner: string) => Promise<void>
-  getRepliesByThreadId: (threadId: string) => Promise<void>
+  getRepliesByThreadId: (threadId: string) => Promise<any>
 }
 
 interface DetailThreadUseCaseType {
@@ -84,7 +84,7 @@ class DetailThreadUseCase {
   async execute (useCasePayload: { threadId: string }): Promise<any> {
     const { threadId } = useCasePayload
 
-    const thread: ThreadType | any = await this._threadRepository.getThreadById(threadId)
+    const thread: ThreadType = await this._threadRepository.getThreadById(threadId)
     const comments: CommentsType[] | any = await this._commentRepository.getCommentsByThreadId(threadId)
     const replies: RepliesType[] | any = await this._replyRepository.getRepliesByThreadId(threadId)
 

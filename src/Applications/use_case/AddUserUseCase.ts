@@ -7,7 +7,7 @@ interface RegisterUserType {
 }
 
 interface UserRepositoryType {
-  addUser: (registerUser: RegisterUserType) => Promise<void>
+  addUser: (registerUser: RegisterUserType) => Promise<any>
   verifyAvailableUsername: (username: string) => Promise<void>
   verifyUserExist: (id: string) => Promise<void>
   getPasswordByUsername: (username: string) => Promise<void>
@@ -15,7 +15,7 @@ interface UserRepositoryType {
 }
 
 interface PasswordHashType {
-  hash: (password: string) => Promise<void>
+  hash: (password: string) => Promise<any>
   comparePassword: (plain: string, encrypted: string) => Promise<void>
 }
 
@@ -39,10 +39,10 @@ class AddUserUseCase {
     this._passwordHash = passwordHash
   }
 
-  async execute (useCasePayload: UseCasePayloadType): Promise<any> {
+  async execute (useCasePayload: UseCasePayloadType): Promise<RegisterUserType> {
     const registerUser: UseCasePayloadType = new RegisterUser(useCasePayload)
     await this._userRepository.verifyAvailableUsername(registerUser.username)
-    registerUser.password = await this._passwordHash.hash(registerUser.password) as unknown as string
+    registerUser.password = await this._passwordHash.hash(registerUser.password)
     return await this._userRepository.addUser(registerUser)
   }
 }

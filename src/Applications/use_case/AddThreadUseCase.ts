@@ -7,7 +7,7 @@ interface NewThreadType {
 }
 
 interface ThreadRepositoryType {
-  addThread: (newThread: NewThreadType) => Promise<void>
+  addThread: (newThread: NewThreadType) => Promise<any>
   verifyThreadExists: (newThread: NewThreadType) => Promise<void>
   getThreadById: (id: string) => Promise<void>
 }
@@ -19,7 +19,7 @@ class AddThreadUseCase {
     this._threadRepository = threadRepository
   }
 
-  async execute (useCasePayload: NewThreadType): Promise<any> {
+  async execute (useCasePayload: NewThreadType): Promise<NewThreadType> {
     const newThread = new NewThread(useCasePayload)
     return await this._threadRepository.addThread(newThread)
   }

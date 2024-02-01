@@ -74,8 +74,4 @@ class AddReplyUseCase {
   }
 }
 
-// commentId: string
-// content: string
-// owner: string
-
 export default AddReplyUseCase

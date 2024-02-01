@@ -5,9 +5,9 @@ interface PayloadType {
 
 interface AuthenticationTokenManagerType {
   createRefreshToken: (payload: PayloadType) => Promise<void>
-  createAccessToken: (payload: PayloadType) => Promise<void>
+  createAccessToken: (payload: PayloadType) => Promise<any>
   verifyRefreshToken: (token: string) => Promise<void>
-  decodePayload: (token: string) => Promise<void>
+  decodePayload: (token: string) => Promise<any>
 }
 
 interface AuthenticationRepositoryType {
@@ -33,14 +33,14 @@ class RefreshAuthenticationUseCase {
     this._authenticationTokenManager = authenticationTokenManager
   }
 
-  async execute (useCasePayload: { refreshToken: string }): Promise<any> {
+  async execute (useCasePayload: { refreshToken: string }): Promise<string> {
     this._verifyPayload(useCasePayload)
     const { refreshToken } = useCasePayload
 
     await this._authenticationTokenManager.verifyRefreshToken(refreshToken)
     await this._authenticationRepository.checkAvailabilityToken(refreshToken)
 
-    const { username, id } = await this._authenticationTokenManager.decodePayload(refreshToken) as string | any
+    const { username, id } = await this._authenticationTokenManager.decodePayload(refreshToken)
 
     return await this._authenticationTokenManager.createAccessToken({ username, id })
   }
