@@ -7,7 +7,7 @@ interface ContainerType {
   container: Container
 }
 
-module.exports = {
+export default {
   name: 'authentications',
   register: async (server: Server, { container }: ContainerType) => {
     const authenticationsHandler = new AuthenticationsHandler(container)

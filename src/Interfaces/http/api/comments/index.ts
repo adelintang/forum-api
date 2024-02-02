@@ -7,7 +7,7 @@ interface ContainerType {
   container: Container
 }
 
-module.exports = {
+export default {
   name: 'comments',
   register: async (server: Server, { container }: ContainerType) => {
     const commentsHandler = new CommentsHandler(container)

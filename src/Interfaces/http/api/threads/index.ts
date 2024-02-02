@@ -7,7 +7,7 @@ interface ContainerType {
   container: Container
 }
 
-module.exports = {
+export default {
   name: 'threads',
   register: async (server: Server, { container }: ContainerType) => {
     const threadsHandler = new ThreadsHandler(container)
