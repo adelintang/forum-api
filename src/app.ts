@@ -1,18 +1,11 @@
-import Hapi from '@hapi/hapi'
+import 'dotenv/config'
+import createServer from './Infrastructures/http/createServer'
+import container from './Infrastructures/container'
 
 const init = async (): Promise<void> => {
-  const server = Hapi.server({
-    port: 3000,
-    host: 'localhost'
-  })
-
+  const server = await createServer(container)
   await server.start()
-  console.log('Server running on %s', server.info.uri)
+  console.log(`server start at ${server.info.uri}`)
 }
-
-process.on('unhandledRejection', (err) => {
-  console.log(err)
-  process.exit(1)
-})
 
 void init()

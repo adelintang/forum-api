@@ -3,7 +3,8 @@
 import { createContainer } from 'instances-container'
 
 // external agency
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid'
+import { randomBytes } from 'crypto'
 import bcrypt from 'bcrypt'
 import Jwt from '@hapi/jwt'
 import pool from './database/postgres/pool'
@@ -42,6 +43,8 @@ import LikeCommentUseCase from '../Applications/use_case/LikeCommentUseCase'
 // creating container
 const container = createContainer()
 
+const randomId = (): string => randomBytes(8).toString('hex')
+
 // registering services and repository
 container.register([
   {
@@ -53,7 +56,7 @@ container.register([
           concrete: pool
         },
         {
-          concrete: nanoid
+          concrete: randomId
         }
       ]
     }
@@ -100,7 +103,7 @@ container.register([
           concrete: pool
         },
         {
-          concrete: nanoid
+          concrete: randomId
         }
       ]
     }
@@ -114,7 +117,7 @@ container.register([
           concrete: pool
         },
         {
-          concrete: nanoid
+          concrete: randomId
         }
       ]
     }
@@ -128,7 +131,7 @@ container.register([
           concrete: pool
         },
         {
-          concrete: nanoid
+          concrete: randomId
         }
       ]
     }
@@ -142,7 +145,7 @@ container.register([
           concrete: pool
         },
         {
-          concrete: nanoid
+          concrete: randomId
         }
       ]
     }
