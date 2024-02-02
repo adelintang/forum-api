@@ -5,7 +5,7 @@ interface NewReplyType {
 }
 
 class ReplyRepository {
-  async addReply (newReply: NewReplyType): Promise<void> {
+  async addReply (newReply: NewReplyType): Promise<any> {
     throw new Error('REPLY_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
@@ -17,7 +17,7 @@ class ReplyRepository {
     throw new Error('REPLY_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
-  async getRepliesByThreadId (threadId: string): Promise<void> {
+  async getRepliesByThreadId (threadId: string): Promise<any> {
     throw new Error('REPLY_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 }

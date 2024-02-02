@@ -3,7 +3,7 @@ class UserCommentLikeRepository {
     throw new Error('USER_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
-  async verifyLikeExists (commentId: string, owner: string): Promise<void> {
+  async verifyLikeExists (commentId: string, owner: string): Promise<any> {
     throw new Error('USER_COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 

@@ -5,7 +5,7 @@ interface RegisterUserType {
 }
 
 class UserRepository {
-  async addUser (registerUser: RegisterUserType): Promise<void> {
+  async addUser (registerUser: RegisterUserType): Promise<any> {
     throw new Error('USER_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
@@ -17,11 +17,11 @@ class UserRepository {
     throw new Error('USER_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
-  async getPasswordByUsername (username: string): Promise<void> {
+  async getPasswordByUsername (username: string): Promise<any> {
     throw new Error('USER_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
-  async getIdByUsername (username: string): Promise<void> {
+  async getIdByUsername (username: string): Promise<any> {
     throw new Error('USER_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 }

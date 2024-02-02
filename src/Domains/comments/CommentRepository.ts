@@ -5,7 +5,7 @@ interface NewCommentType {
 }
 
 class CommentRepository {
-  async addComment (newComment: NewCommentType): Promise<void> {
+  async addComment (newComment: NewCommentType): Promise<any> {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
@@ -17,7 +17,7 @@ class CommentRepository {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
-  async getCommentsByThreadId (threadId: string): Promise<void> {
+  async getCommentsByThreadId (threadId: string): Promise<any> {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 

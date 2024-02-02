@@ -5,7 +5,7 @@ interface NewThreadType {
 }
 
 class ThreadRepository {
-  async addThread (newThread: NewThreadType): Promise<void> {
+  async addThread (newThread: NewThreadType): Promise<any> {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
@@ -13,7 +13,7 @@ class ThreadRepository {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 
-  async getThreadById (id: string): Promise<void> {
+  async getThreadById (id: string): Promise<any> {
     throw new Error('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   }
 }
