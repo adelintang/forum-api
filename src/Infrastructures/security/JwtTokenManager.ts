@@ -15,7 +15,7 @@ interface PayloadType {
 class JwtTokenManager extends AuthenticationTokenManager {
   _jwt: JwtType
 
-  constructor (jwt: JwtType) {
+  constructor (jwt: JwtType | any) {
     super()
     this._jwt = jwt
   }

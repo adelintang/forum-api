@@ -3,7 +3,14 @@ import AddedComment from '../AddedComment'
 describe('AddComment entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    interface PayloadType {
+      id: any
+      content: string
+      owner: string
+    }
+
+    const payload: PayloadType = {
+      id: undefined,
       content: 'Lorem ipsum sit dolor',
       owner: 'user-123'
     }
@@ -14,9 +21,15 @@ describe('AddComment entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
-      id: 'comment-123',
-      content: ['Lorem ipsum sit dolor'],
+    interface PayloadType {
+      id: any
+      content: string
+      owner: string
+    }
+
+    const payload: PayloadType = {
+      id: 123,
+      content: 'Lorem ipsum sit dolor',
       owner: 'user-123'
     }
 

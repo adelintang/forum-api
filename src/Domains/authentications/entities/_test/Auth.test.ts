@@ -3,8 +3,10 @@ import Auth from '../Auth'
 describe('Auth entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
-      accessToken: 'exampleAccessToken'
+    const payload: { accessToken: string
+      refreshToken: any } = {
+      accessToken: 'exampleAccessToken',
+      refreshToken: undefined
     }
 
     // Action and Assert
@@ -13,7 +15,8 @@ describe('Auth entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
+    const payload: { accessToken: string
+      refreshToken: any } = {
       accessToken: 'exampleAccessToken',
       refreshToken: 12345
     }

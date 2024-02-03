@@ -1,10 +1,17 @@
 import LoginUser from '../LoginUser'
 
+interface PayloadType {
+  username: string
+  password: string
+}
+
 describe('LoginUser entities', () => {
   it('should throw error when payload did not contain needed property', () => {
     // Arrange
-    const payload: { username: string } = {
-      username: 'dicodingstudent'
+
+    const payload: PayloadType = {
+      username: 'dicodingstudent',
+      password: ''
     }
 
     // Action and Assert
@@ -13,7 +20,7 @@ describe('LoginUser entities', () => {
 
   it('should throw error when payload did not meet data type specification', () => {
     // Arrange
-    const payload: { username: string, password: number } = {
+    const payload: { username: string, password: any } = {
       username: 'dicodingstudent',
       password: 23456
     }
@@ -24,7 +31,7 @@ describe('LoginUser entities', () => {
 
   it('should create LoginUser object correctly', () => {
     // Arrange
-    const payload = {
+    const payload: PayloadType = {
       username: 'dicodingstudent',
       password: '23456'
     }

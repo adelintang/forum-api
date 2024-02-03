@@ -55,7 +55,7 @@ describe('GetAuthenticationUseCase', () => {
     })
     const mockUserRepository: UserRepositoryType = new UserRepository()
     const mockAuthenticationRepository: AuthenticationRepositoryType = new AuthenticationRepository()
-    const mockAuthenticationTokenManager: AuthenticationTokenManagerType = new AuthenticationTokenManager()
+    const mockAuthenticationTokenManager: AuthenticationTokenManagerType | any = new AuthenticationTokenManager()
     const mockPasswordHash: PasswordHashType = new PasswordHash()
 
     // Mocking

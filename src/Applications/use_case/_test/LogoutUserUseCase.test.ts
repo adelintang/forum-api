@@ -1,5 +1,6 @@
 import AuthenticationRepository from '../../../Domains/authentications/AuthenticationRepository'
 import LogoutUserUseCase from '../LogoutUserUseCase'
+import container from '../../../Infrastructures/container'
 
 interface AuthenticationRepositoryType {
   addToken: (token: string) => Promise<void>
@@ -11,7 +12,7 @@ describe('LogoutUserUseCase', () => {
   it('should throw error if use case payload not contain refresh token', async () => {
     // Arrange
     const useCasePayload = {}
-    const logoutUserUseCase = new LogoutUserUseCase({})
+    const logoutUserUseCase: { execute: any } = new LogoutUserUseCase(container.getInstance(LogoutUserUseCase.name))
 
     // Action & Assert
     await expect(logoutUserUseCase.execute(useCasePayload))
@@ -24,7 +25,7 @@ describe('LogoutUserUseCase', () => {
     const useCasePayload = {
       refreshToken: 123
     }
-    const logoutUserUseCase = new LogoutUserUseCase({})
+    const logoutUserUseCase: { execute: any } = new LogoutUserUseCase(container.getInstance(LogoutUserUseCase.name))
 
     // Action & Assert
     await expect(logoutUserUseCase.execute(useCasePayload))

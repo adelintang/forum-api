@@ -2,17 +2,60 @@ import Comment from '../../../comments/entities/Comment'
 import Reply from '../../../replies/entities/Reply'
 import DetailThread from '../DetailThread'
 
+interface PayloadType {
+  thread: ThreadType
+  comments: CommentType[] | any
+  replies: ReplyType[] | any
+}
+
+interface ReplyType {
+  id: string
+  username: string
+  date: string
+  content: string
+  is_delete: string
+  commentId: string
+}
+
+interface ThreadType {
+  id: string
+  title: string
+  body: string
+  date: string
+  username: string
+  comments?: CommentType[] | any
+}
+
+interface CommentType {
+  id: string
+  username: string
+  date: string
+  content: string
+  is_delete: string
+  count: string
+  replies?: DetailRepliesType[]
+}
+
+interface DetailRepliesType {
+  id: string
+  content: string
+  date: string
+  username: string
+}
+
 describe('DetailThread entities', () => {
   it('should should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    const payload: PayloadType = {
       thread: {
         id: 'thread-123',
         title: 'New Thread',
         body: 'lorem ipsum sit dolor',
         date: new Date().toISOString(),
         username: 'dicoding'
-      }
+      },
+      comments: [],
+      replies: undefined
     }
 
     // Action and Assert
@@ -21,7 +64,7 @@ describe('DetailThread entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
+    const payload: PayloadType = {
       thread: {
         id: 'thread-123',
         title: 'New Thread',
@@ -29,7 +72,7 @@ describe('DetailThread entities', () => {
         date: new Date().toISOString(),
         username: 'dicoding'
       },
-      comments: 'this is comment',
+      comments: 'this is',
       replies: []
     }
 
@@ -58,7 +101,7 @@ describe('DetailThread entities', () => {
       comment_id: 'comment-123'
     })
 
-    const payload = {
+    const payload: PayloadType = {
       thread: {
         id: 'thread-123',
         title: 'Lorem',
@@ -71,7 +114,7 @@ describe('DetailThread entities', () => {
     }
 
     // Action
-    const detailThread = new DetailThread(payload)
+    const detailThread: { thread: any } = new DetailThread(payload)
 
     // Assert
     expect(detailThread).toBeInstanceOf(DetailThread)

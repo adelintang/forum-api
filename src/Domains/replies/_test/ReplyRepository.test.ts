@@ -3,11 +3,24 @@ import ReplyRepository from '../ReplyRepository'
 describe('ReplyRepository interface', () => {
   it('should throw error when invoke unimplemented method', async () => {
     // Arrange
-    const replyRepository = new ReplyRepository()
+    interface ReplyRepositoryType {
+      addReply: (newReply: PayloadType) => Promise<any>
+      deleteReply: (id: string) => Promise<void>
+      verifyReplyOwner: (id: string, owner: string) => Promise<void>
+      getRepliesByThreadId: (threadId: string) => Promise<any>
+    }
+
+    interface PayloadType {
+      commentId: any
+      content: string
+      owner: string
+    }
+
+    const replyRepository: ReplyRepositoryType = new ReplyRepository()
 
     // Action and Assert
     await expect(replyRepository.addReply({
-      id: '',
+      commentId: undefined,
       content: '',
       owner: ''
     })).rejects.toThrowError('REPLY_REPOSITORY.METHOD_NOT_IMPLEMENTED')

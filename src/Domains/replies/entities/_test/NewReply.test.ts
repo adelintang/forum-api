@@ -1,11 +1,18 @@
 import NewReply from '../NewReply'
 
+interface PayloadType {
+  commentId: string
+  content: string
+  owner: any
+}
+
 describe('NewReply entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    const payload: PayloadType = {
       commentId: 'comment-123',
-      content: 'Lorem ipsum sit dolor'
+      content: 'Lorem ipsum sit dolor',
+      owner: undefined
     }
 
     // Action and Assert
@@ -14,10 +21,10 @@ describe('NewReply entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
+    const payload: PayloadType = {
       commentId: 'comment-123',
-      content: ['Lorem ipsum sit dolor'],
-      owner: 'user-123'
+      content: 'Lorem ipsum sit dolor',
+      owner: 123
     }
 
     // Action and Assert

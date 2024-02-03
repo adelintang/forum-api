@@ -1,11 +1,18 @@
 import NewComment from '../NewComment'
 
+interface PayloadType {
+  threadId: any
+  content: string
+  owner: string
+}
+
 describe('NewComment entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
-      threadId: 'thread-123',
-      content: 'Lorem ipsum sit dolor'
+    const payload: PayloadType = {
+      threadId: undefined,
+      content: 'Lorem ipsum sit dolor',
+      owner: 'dicoding'
     }
 
     // Action and Assert
@@ -14,10 +21,10 @@ describe('NewComment entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
-      threadId: 'thread-123',
+    const payload: PayloadType = {
+      threadId: 123,
       content: 'Lorem ipsum sit dolor',
-      owner: ['user-123']
+      owner: 'user-123'
     }
 
     // Action and Assert

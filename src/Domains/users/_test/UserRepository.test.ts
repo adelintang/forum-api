@@ -1,4 +1,4 @@
-import UserRepository from '../UserRepository.ts'
+import UserRepository from '../UserRepository'
 
 describe('UserRepository interface', () => {
   it('should throw error when invoke abstract behavior', async () => {

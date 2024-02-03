@@ -3,11 +3,20 @@ import Thread from '../Thread'
 describe('Thread entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    interface PayloadType {
+      id: string
+      title: string
+      body: string
+      date: string
+      username: any
+    }
+
+    const payload: PayloadType = {
       id: 'thread-123',
       title: 'New Thread',
       body: 'Lorem ipsum sit dolor',
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
+      username: undefined
     }
 
     // Action and Assert
@@ -16,10 +25,18 @@ describe('Thread entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
-      id: 'thread-123',
+    interface PayloadType {
+      id: any
+      title: string
+      body: string
+      date: string
+      username: string
+    }
+
+    const payload: PayloadType = {
+      id: 123,
       title: 'New Thread',
-      body: ['Lorem ipsum sit dolor'],
+      body: 'Lorem ipsum sit dolor',
       date: new Date().toISOString(),
       username: 'dicoding'
     }

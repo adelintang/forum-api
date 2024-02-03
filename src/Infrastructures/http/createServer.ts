@@ -10,7 +10,7 @@ import threads from '../../Interfaces/http/api/threads'
 import comments from '../../Interfaces/http/api/comments'
 import replies from '../../Interfaces/http/api/replies'
 
-const createServer = async (container: Container): Promise<Server> => {
+const createServer = async (container: Container | any): Promise<Server> => {
   const server = Hapi.server({
     host: process.env.HOST,
     port: process.env.PORT

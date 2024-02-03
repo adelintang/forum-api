@@ -3,9 +3,10 @@ import AddedThread from '../AddedThread'
 describe('AddedThread entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    const payload: { title: string, owner: string, id: any } = {
       title: 'New Thread',
-      owner: 'John Doe'
+      owner: 'John Doe',
+      id: undefined
     }
 
     // Action and Assert
@@ -14,10 +15,10 @@ describe('AddedThread entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
-      id: 'thread-123',
+    const payload: { title: string, owner: string, id: any } = {
+      id: 123,
       title: 'New Thread',
-      owner: ['John Doe']
+      owner: 'John Doe'
     }
 
     // Action and Assert

@@ -3,9 +3,16 @@ import DeleteComment from '../DeleteComment'
 describe('DeleteComment entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    interface PayloadType {
+      threadId: string
+      commentId: string
+      owner: any
+    }
+
+    const payload: PayloadType = {
       threadId: 'thread-123',
-      commentId: 'comment-123'
+      commentId: 'comment-123',
+      owner: undefined
     }
 
     // Action and Assert
@@ -14,7 +21,13 @@ describe('DeleteComment entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
+    interface PayloadType {
+      threadId: any
+      commentId: string
+      owner: string
+    }
+
+    const payload: PayloadType = {
       threadId: ['thread-123'],
       commentId: 'comment-123',
       owner: 'user-123'

@@ -1,9 +1,10 @@
 import createServer from '../createServer'
+import container from '../../container'
 
 describe('HTTP server', () => {
   it('should response 404 when request unregistered route', async () => {
     // Arrange
-    const server = await createServer({})
+    const server = await createServer(container)
 
     // Action
     const response = await server.inject({
@@ -22,6 +23,7 @@ describe('HTTP server', () => {
       fullname: 'Dicoding Indonesia',
       password: 'super_secret'
     }
+
     const server = await createServer({}) // fake injection
 
     // Action

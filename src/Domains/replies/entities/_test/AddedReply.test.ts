@@ -1,9 +1,16 @@
 import AddedReply from '../AddedReply'
 
+interface PayloadType {
+  id: any
+  content: string
+  owner: string
+}
+
 describe('AddedReply entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    const payload: PayloadType = {
+      id: undefined,
       content: 'Lorem ipsum sit dolor',
       owner: 'user-123'
     }
@@ -14,9 +21,9 @@ describe('AddedReply entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
-      id: 'reply-123',
-      content: ['Lorem ipsum sit dolor'],
+    const payload: PayloadType = {
+      id: 123,
+      content: 'Lorem ipsum sit dolor',
       owner: 'user-123'
     }
 

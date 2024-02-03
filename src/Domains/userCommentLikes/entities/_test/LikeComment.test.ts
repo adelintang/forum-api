@@ -1,11 +1,18 @@
 import LikeComment from '../LikeComment'
 
+interface PayloadType {
+  threadId: any
+  commentId: string
+  owner: string
+}
+
 describe('LikeComment entities', () => {
   it('should throw error when payload did not contain needed property', () => {
     // Arrange
-    const payload = {
-      threadId: 'thread-123',
-      commentId: 'comment-123'
+    const payload: PayloadType = {
+      threadId: undefined,
+      commentId: 'comment-123',
+      owner: 'user-123'
     }
 
     // Action and Assert
@@ -14,10 +21,10 @@ describe('LikeComment entities', () => {
 
   it('should throw error when payload did not meet data type specification', () => {
     // Arrange
-    const payload = {
-      threadId: 'thread-123',
+    const payload: PayloadType = {
+      threadId: ['thread-123'],
       commentId: 'comment-123',
-      owner: ['user-123']
+      owner: 'user-123'
     }
 
     // Action and Assert

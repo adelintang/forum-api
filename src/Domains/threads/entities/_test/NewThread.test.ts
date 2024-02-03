@@ -3,8 +3,16 @@ import NewThread from '../NewThread'
 describe('NewThread entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
-      title: 'New Thread'
+    interface PayloadType {
+      title: string
+      body: any
+      owner: any
+    }
+
+    const payload: PayloadType = {
+      title: 'New Thread',
+      body: undefined,
+      owner: undefined
     }
 
     // Action and Assert
@@ -13,10 +21,16 @@ describe('NewThread entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
+    interface PayloadType {
+      title: string
+      body: string
+      owner: any
+    }
+
+    const payload: PayloadType = {
       title: 'New Thread',
-      body: ['Lorem ipsum sit dolor'],
-      owner: 'user-123'
+      body: 'Lorem ipsum sit dolor',
+      owner: 123
     }
 
     // Action and Assert

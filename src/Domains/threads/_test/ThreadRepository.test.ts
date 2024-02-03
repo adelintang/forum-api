@@ -11,11 +11,7 @@ describe('ThreadRepository interface', () => {
       body: '',
       owner: ''
     })).rejects.toThrowError('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
-    await expect(threadRepository.verifyThreadExists({
-      title: '',
-      body: '',
-      owner: ''
-    })).rejects.toThrowError('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
+    await expect(threadRepository.verifyThreadExists('')).rejects.toThrowError('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
     await expect(threadRepository.getThreadById('')).rejects.toThrowError('THREAD_REPOSITORY.METHOD_NOT_IMPLEMENTED')
   })
 })

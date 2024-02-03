@@ -1,6 +1,7 @@
 import AuthenticationRepository from '../../../Domains/authentications/AuthenticationRepository'
 import AuthenticationTokenManager from '../../security/AuthenticationTokenManager'
 import RefreshAuthenticationUseCase from '../RefreshAuthenticationUseCase'
+import container from '../../../Infrastructures/container'
 
 interface PayloadType {
   username: string
@@ -24,7 +25,7 @@ describe('RefreshAuthenticationUseCase', () => {
   it('should throw error if use case payload not contain refresh token', async () => {
     // Arrange
     const useCasePayload = {}
-    const refreshAuthenticationUseCase = new RefreshAuthenticationUseCase({})
+    const refreshAuthenticationUseCase: { execute: any } = new RefreshAuthenticationUseCase(container.getInstance(RefreshAuthenticationUseCase.name))
 
     // Action & Assert
     await expect(refreshAuthenticationUseCase.execute(useCasePayload))
@@ -37,7 +38,7 @@ describe('RefreshAuthenticationUseCase', () => {
     const useCasePayload = {
       refreshToken: 1
     }
-    const refreshAuthenticationUseCase = new RefreshAuthenticationUseCase({})
+    const refreshAuthenticationUseCase: { execute: any } = new RefreshAuthenticationUseCase(container.getInstance(RefreshAuthenticationUseCase.name))
 
     // Action & Assert
     await expect(refreshAuthenticationUseCase.execute(useCasePayload))

@@ -30,7 +30,7 @@ describe('AddedThreadUseCase', () => {
       owner: 'John Doe'
     })
 
-    const mockThreadRepository: ThreadRepositoryType = new ThreadRepository()
+    const mockThreadRepository: ThreadRepositoryType | any = new ThreadRepository()
     mockThreadRepository.addThread = jest.fn(async () => await Promise.resolve(mockAddedThread))
 
     const addThreadUseCase = new AddThreadUseCase({

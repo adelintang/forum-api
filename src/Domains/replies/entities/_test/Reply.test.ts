@@ -1,14 +1,24 @@
 import Reply from '../Reply'
 
+interface PayloadType {
+  id: any
+  username: string
+  date: string
+  content: string
+  comment_id: string
+  is_delete: string
+}
+
 describe('Reply entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
-      id: 'reply-123',
+    const payload: PayloadType = {
+      id: undefined,
       username: 'dicoding',
       date: new Date().toISOString(),
       content: 'lorem ipsum sit dolor',
-      comment_id: 'comment-123'
+      comment_id: 'comment-123',
+      is_delete: 'false'
     }
 
     // Action and Assert
@@ -17,9 +27,9 @@ describe('Reply entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
-      id: 'reply-123',
-      username: ['dicoding'],
+    const payload: PayloadType = {
+      id: 123,
+      username: 'dicoding',
       date: new Date().toISOString(),
       content: 'lorem ipsum sit dolor',
       is_delete: 'false',

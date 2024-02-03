@@ -1,10 +1,19 @@
 /* istanbul ignore file */
 import pool from '../Infrastructures/database/postgres/pool'
 
+interface AddReplyType {
+  id?: string
+  commentId?: string
+  owner?: string
+  content?: string
+  date?: string | any
+  isDelete?: string
+}
+
 const RepliesTableTestHelper = {
   async addReply ({
     id = 'reply-123', owner = 'user-123', commentId = 'comment-123', content = 'Lorem ipsum sit dolor', date = new Date().toISOString, isDelete = 'false'
-  }) {
+  }: AddReplyType) {
     const query = {
       text: 'INSERT INTO replies VALUES($1, $2, $3, $4, $5, $6)',
       values: [id, commentId, owner, content, date, isDelete]

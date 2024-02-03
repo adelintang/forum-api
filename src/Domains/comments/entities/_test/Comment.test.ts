@@ -3,11 +3,22 @@ import Comment from '../Comment'
 describe('Comment entities', () => {
   it('should throw error when payload not contain needed property', () => {
     // Arrange
-    const payload = {
+    interface PayloadType {
+      id: string
+      username: string
+      date: string
+      content: string
+      is_delete: any
+      count: any
+    }
+
+    const payload: PayloadType = {
       id: 'comment-123',
       username: 'dicoding',
       date: new Date().toISOString(),
-      content: 'lorem ipsum sit dolor'
+      content: 'lorem ipsum sit dolor',
+      is_delete: undefined,
+      count: undefined
     }
 
     // Action and Assert
@@ -16,9 +27,18 @@ describe('Comment entities', () => {
 
   it('should throw error when payload not meet data type specification', () => {
     // Arrange
-    const payload = {
-      id: 'comment-123',
-      username: ['dicoding'],
+    interface PayloadType {
+      id: any
+      username: string
+      date: string
+      content: string
+      is_delete: string
+      count: string
+    }
+
+    const payload: PayloadType = {
+      id: 123,
+      username: 'dicoding',
       date: new Date().toISOString(),
       content: 'lorem ipsum sit dolor',
       is_delete: 'false',

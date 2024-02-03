@@ -3,9 +3,10 @@ import RegisteredUser from '../RegisteredUser'
 describe('a RegisteredUser entities', () => {
   it('should throw error when payload did not contain needed property', () => {
     // Arrange
-    const payload = {
+    const payload: { username: string, fullname: string, id: any } = {
       username: 'dicoding',
-      fullname: 'Dicoding Indonesia'
+      fullname: 'Dicoding Indonesia',
+      id: undefined
     }
 
     // Action and Assert
@@ -14,7 +15,7 @@ describe('a RegisteredUser entities', () => {
 
   it('should throw error when payload did not meet data type specification', () => {
     // Arrange
-    const payload = {
+    const payload: { username: string, fullname: string, id: any } = {
       id: 123,
       username: 'dicoding',
       fullname: 'Dicoding Indonesia'

@@ -2,17 +2,30 @@ import Jwt from '@hapi/jwt'
 import InvariantError from '../../../Commons/exceptions/InvariantError'
 import JwtTokenManager from '../JwtTokenManager'
 
+interface PayloadType {
+  username: string
+  id: string
+}
+
+interface JwtTokenManagerType {
+  createRefreshToken: (payload: PayloadType) => Promise<any>
+  createAccessToken: (payload: PayloadType) => Promise<any>
+  verifyRefreshToken: (token: string) => Promise<void>
+  decodePayload: (token: string) => Promise<void>
+}
+
 describe('JwtTokenManager', () => {
   describe('createAccessToken function', () => {
     it('should create accessToken correctly', async () => {
       // Arrange
-      const payload = {
-        username: 'dicoding'
+      const payload: PayloadType = {
+        username: 'dicoding',
+        id: 'user-123'
       }
       const mockJwtToken = {
         generate: jest.fn().mockImplementation(() => 'mock_token')
       }
-      const jwtTokenManager = new JwtTokenManager(mockJwtToken)
+      const jwtTokenManager: JwtTokenManagerType = new JwtTokenManager(mockJwtToken)
 
       // Action
       const accessToken = await jwtTokenManager.createAccessToken(payload)
@@ -27,12 +40,13 @@ describe('JwtTokenManager', () => {
     it('should create refreshToken correctly', async () => {
       // Arrange
       const payload = {
-        username: 'dicoding'
+        username: 'dicoding',
+        id: 'user-123'
       }
       const mockJwtToken = {
         generate: jest.fn().mockImplementation(() => 'mock_token')
       }
-      const jwtTokenManager = new JwtTokenManager(mockJwtToken)
+      const jwtTokenManager: JwtTokenManagerType = new JwtTokenManager(mockJwtToken)
 
       // Action
       const refreshToken = await jwtTokenManager.createRefreshToken(payload)

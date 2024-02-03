@@ -1,5 +1,6 @@
 import AuthenticationRepository from '../../../Domains/authentications/AuthenticationRepository'
 import DeleteAuthenticationUseCase from '../DeleteAuthenticationUseCase'
+import container from '../../../Infrastructures/container'
 
 interface AuthenticationRepositoryType {
   addToken: (token: string) => Promise<void>
@@ -11,7 +12,7 @@ describe('DeleteAuthenticationUseCase', () => {
   it('should throw error if use case payload not contain refresh token', async () => {
     // Arrange
     const useCasePayload = {}
-    const deleteAuthenticationUseCase = new DeleteAuthenticationUseCase({})
+    const deleteAuthenticationUseCase: { execute: any } = new DeleteAuthenticationUseCase(container.getInstance(AuthenticationRepository.name))
 
     // Action & Assert
     await expect(deleteAuthenticationUseCase.execute(useCasePayload))
@@ -24,7 +25,7 @@ describe('DeleteAuthenticationUseCase', () => {
     const useCasePayload = {
       refreshToken: 123
     }
-    const deleteAuthenticationUseCase = new DeleteAuthenticationUseCase({})
+    const deleteAuthenticationUseCase: { execute: any } = new DeleteAuthenticationUseCase(container.getInstance(AuthenticationRepository.name))
 
     // Action & Assert
     await expect(deleteAuthenticationUseCase.execute(useCasePayload))
