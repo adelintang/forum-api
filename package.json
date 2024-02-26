@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "tsc -p . && node dist/app.js",
     "start:dev": "nodemon src/app.ts",
     "build": "tsc -p .",
     "test": "jest --setupFiles dotenv/config -i",
