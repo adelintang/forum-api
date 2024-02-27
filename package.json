@@ -7,9 +7,11 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "tsc -p . && node dist/app.js",
+    "start": "cross-env NODE_ENV=production node dist/app.js",
     "start:dev": "nodemon src/app.ts",
-    "build": "tsc -p .",
+    "build": "rimraf dist && tsc",
+    "prestart" : "npm run build",
+    "typecheck": "tsc --noEmit",
     "test": "jest --setupFiles dotenv/config -i",
     "test:watch:change": "jest --watch --setupFiles dotenv/config -i",
     "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config -i",
@@ -24,10 +26,13 @@
     "@hapi/hapi": "^21.3.3",
     "@hapi/jwt": "^3.2.0",
     "bcrypt": "^5.1.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.1",
+    "helmet": "^7.1.0",
     "instances-container": "^2.0.6",
     "node-pg-migrate": "^6.2.2",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "rimraf": "^5.0.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.9",
